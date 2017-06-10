@@ -1,0 +1,3 @@
+com\govansnv\fuel\test\IFindByCustomerSearchTerm.class
+com\govansnv\fuel\test\IFindBySearchTermTest.class
+com\govansnv\fuel\test\helper\AllITests.class

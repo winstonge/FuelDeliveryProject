@@ -1,0 +1,23 @@
+<dataset>
+    <customer id="1"
+           customer_id="126393"
+           customer_sold_to="ANTRACO ARUBA N.V."
+           customer_ship_to="ANTRACO ARUBA N.V."
+           ship_to="249002"
+           barcode="ehsbq"
+           company_id="1" />
+     <customer id="2"
+           customer_id="126398"
+           customer_sold_to="ARCOS"
+           customer_ship_to="ARCOS"
+           ship_to="249007"
+           barcode="35wem"
+           company_id="1" />
+      <customer id="3"
+           customer_id="133240"
+           customer_sold_to="ARENDS AGENCIES N.V."
+           customer_ship_to="ARENDS AGENCIES (ARUBA) N.V."
+           ship_to="281104"
+           barcode="l0zr0"
+           company_id="1" />   
+</dataset>
