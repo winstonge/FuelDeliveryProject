@@ -34,7 +34,7 @@ public class FuelDeliveryAction implements BasicFuelingAction {
 		// Get the device object
 		Device device = deviceService.getDeviceByNo(deviceId); 
 		// Get the truck object
-		Truck truck = truckService.getTruckByNo(truckNumber);//???
+		Truck truck = truckService.getTruckByNo(truckNumber);
 		
 		// Add references
 		fuelDelivery.setDevice(device);
