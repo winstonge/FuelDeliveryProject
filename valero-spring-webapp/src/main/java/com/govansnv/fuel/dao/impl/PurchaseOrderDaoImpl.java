@@ -55,13 +55,13 @@ public class PurchaseOrderDaoImpl extends AbstractDao<Integer, PurchaseOrder> im
 		PurchaseOrder order = (PurchaseOrder) getEntityManager().createQuery("SELECT d FROM purchase_order d WHERE d.id LIKE :Id")
 				.setParameter("Id", purchaseOrder.getId()).getSingleResult();
 		if(order!=null){
-			order.setDriverFirstname(purchaseOrder.getDriverFirstname());
-			order.setDriverLastname(purchaseOrder.getDriverLastname());
-			order.setCustFirstname(purchaseOrder.getCustFirstname());
-			order.setCustLastname(purchaseOrder.getCustLastname());
-			order.setDriverBadge(purchaseOrder.getDriverBadge());
-			order.setDriverSignature(purchaseOrder.getDriverSignature());
-			order.setTicketNo(purchaseOrder.getCustomerSignature());
+			order.setTicketNo(purchaseOrder.getTicketNo());
+			order.setTruckNumber(purchaseOrder.getTruckNumber());
+			order.setDeliveredOn(purchaseOrder.getDeliveredOn());
+			order.setFuelName(purchaseOrder.getFuelName());
+			order.setFuelPrice(purchaseOrder.getFuelPrice());
+			order.setPurchaseDate(purchaseOrder.getPurchaseDate());
+			order.setPurchaseVolume(purchaseOrder.getPurchaseVolume());
 		}
 		update(order);
 	}

@@ -21,36 +21,24 @@ public class PurchaseOrder {
 	@Column(name = "purchase_date")
 	private int purchaseDate;
 		
-	@Column(name = "driver_badge")
-	private int driverBadge;
-	
-	@Column(name = "driver_firstname")
-	private int driverFirstname;
-	
-	@Column(name = "driver_lastname")
-	private int driverLastname;
-	
-	@Column(name = "cust_firstname")
-	private int custFirstname;
-	
-	@Column(name = "cust_lastname")
-	private int custLastname;
-	
-	@Column(name = "driver_signature")
-	private int driverSignature;
-	
-	@Column(name = "cust_signature")
-	private int customerSignature;
-	
-	@Column(name = "deivered_on")
+	@Column(name = "delivered_on")
 	private int deliveredOn;
+	
+	@Column(name = "purchase_volume")
+	private int purchaseVolume;
+	
+	@Column(name = "fuel_price")
+	private int fuelPrice;
 
+	@Column(name = "truck_number")
+	private int truckNumber;
+	
+	@Column(name = "fuel_name")
+	private int fuelName;
+	
 	@ManyToOne(targetEntity=Customer.class, fetch=FetchType.EAGER)
 	private Customer customer;
 	
-	@ManyToOne(targetEntity=Truck.class, fetch=FetchType.EAGER)
-	private Truck truck;
-
 
 	public int getId() {
 		return id;
@@ -76,60 +64,48 @@ public class PurchaseOrder {
 		this.purchaseDate = purchaseDate;
 	}
 
-	public int getDriverBadge() {
-		return driverBadge;
+	public int getDeliveredOn() {
+		return deliveredOn;
 	}
 
-	public void setDriverBadge(int driverBadge) {
-		this.driverBadge = driverBadge;
+	public void setDeliveredOn(int deliveredOn) {
+		this.deliveredOn = deliveredOn;
 	}
 
-	public int getDriverFirstname() {
-		return driverFirstname;
+	public int getPurchaseVolume() {
+		return purchaseVolume;
 	}
 
-	public void setDriverFirstname(int driverFirstname) {
-		this.driverFirstname = driverFirstname;
+	public void setPurchaseVolume(int purchaseVolume) {
+		this.purchaseVolume = purchaseVolume;
 	}
 
-	public int getDriverLastname() {
-		return driverLastname;
+	public int getFuelPrice() {
+		return fuelPrice;
 	}
 
-	public void setDriverLastname(int driverLastname) {
-		this.driverLastname = driverLastname;
+	public void setFuelPrice(int fuelPrice) {
+		this.fuelPrice = fuelPrice;
 	}
 
-	public int getCustFirstname() {
-		return custFirstname;
+	public int getTruckNumber() {
+		return truckNumber;
 	}
 
-	public void setCustFirstname(int custFirstname) {
-		this.custFirstname = custFirstname;
+	public void setTruckNumber(int truckNumber) {
+		this.truckNumber = truckNumber;
 	}
 
-	public int getCustLastname() {
-		return custLastname;
+	public int getFuelName() {
+		return fuelName;
 	}
 
-	public void setCustLastname(int custLastname) {
-		this.custLastname = custLastname;
+	public void setFuelName(int fuelName) {
+		this.fuelName = fuelName;
 	}
 
-	public int getDriverSignature() {
-		return driverSignature;
-	}
-
-	public void setDriverSignature(int driverSignature) {
-		this.driverSignature = driverSignature;
-	}
-
-	public int getCustomerSignature() {
-		return customerSignature;
-	}
-
-	public void setCustomerSignature(int customerSignature) {
-		this.customerSignature = customerSignature;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	@ManyToOne
@@ -138,10 +114,4 @@ public class PurchaseOrder {
 		return customer;
 	}
 	
-	@ManyToOne
-    @JoinColumn(name = "truck_id")
-	public Truck getTruck() {
-		return truck;
-	}
-
 }
