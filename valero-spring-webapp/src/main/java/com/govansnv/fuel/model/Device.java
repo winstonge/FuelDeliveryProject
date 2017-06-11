@@ -1,5 +1,7 @@
 package com.govansnv.fuel.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -24,18 +26,13 @@ public class Device {
 	@Column(name = "device_no")
 	private int deviceNo;
 
-	@Column(name = "last_synch")
-	private int lastSynch;
+	@Column( name = "last_synch")
+	private Timestamp lastSynch;
 
 	@ManyToOne(targetEntity = Department.class, fetch = FetchType.EAGER)
 	private Department department;
 
-	@ManyToOne
-	@JoinColumn(name = "department_id")
-	public Department getDepartment() {
-		return department;
-	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -52,11 +49,18 @@ public class Device {
 		this.deviceNo = deviceNo;
 	}
 
-	public int getLastSynch() {
+	public Timestamp getLastSynch() {
 		return lastSynch;
 	}
 
-	public void setLastSynch(int lastSynch) {
+	public void setLastSynch(Timestamp lastSynch) {
 		this.lastSynch = lastSynch;
 	}
+
+	@Override
+	public String toString() {
+		return "Device [id=" + id + ", deviceNo=" + deviceNo + ", lastSynch=" + lastSynch + "]";
+	}
+	
+	
 }

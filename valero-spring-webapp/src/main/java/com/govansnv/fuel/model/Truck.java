@@ -29,10 +29,10 @@ public class Truck {
 	private String truckCode;
 	
 	@Column(name="truck_volume")
-	private String truckVolume;
+	private int truckVolume;
 	
 	@Column(name="number_of_meters")
-	private String numberOfMeters;
+	private int numberOfMeters;
 
 	public int getId() {
 		return id;
@@ -56,20 +56,28 @@ public class Truck {
 		this.truckCode = truckCode;
 	}
 
-	public String getTruckVolume() {
+	public int getTruckVolume() {
 		return truckVolume;
 	}
 
-	public void setTruckVolume(String truckVolume) {
+	public void setTruckVolume(int truckVolume) {
 		this.truckVolume = truckVolume;
 	}
 
-	public String getNumberOfMeters() {
+	public int getNumberOfMeters() {
 		return numberOfMeters;
 	}
 
-	public void setNumberOfMeters(String numberOfMeters) {
+	public void setNumberOfMeters(int numberOfMeters) {
 		this.numberOfMeters = numberOfMeters;
 	}
+
+	@Override
+	public String toString() {
+		return "Truck [id=" + id + ", department=" + department + ", truckCode=" + truckCode + ", truckVolume="
+				+ truckVolume + ", numberOfMeters=" + numberOfMeters + "]";
+	}
+	
+	
 
 }

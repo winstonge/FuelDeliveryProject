@@ -22,6 +22,10 @@ public class TruckServiceImpl implements TruckService {
 		return truckDao.getTruck(id);
 	}
 
+	public Truck getTruckByNo(String truckNo) {
+		return truckDao.getTruckByNo(truckNo);
+	}
+	
 	public Truck addTruck(Truck truck) {		
 		return truckDao.create(truck);
 	}
@@ -34,4 +38,6 @@ public class TruckServiceImpl implements TruckService {
 	public boolean deleteTruck(int id) {
 		return truckDao.remove(id);
 	}
+
+
 }

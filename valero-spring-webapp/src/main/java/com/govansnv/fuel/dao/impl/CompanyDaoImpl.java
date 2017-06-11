@@ -32,7 +32,7 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements Com
 	@Transactional
 	public Company getCompany(int id) {
 		try {
-			Company company = (Company) getEntityManager().createQuery("SELECT d FROM Company d WHERE d.id LIKE :Id")
+			Company company = (Company) getEntityManager().createQuery("SELECT d FROM Company d WHERE d.id = :Id")
 					.setParameter("Id", id).getSingleResult();
 
 			return company;
@@ -61,7 +61,7 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements Com
 	public Company updateCompany(Company company) {
 		Company c=null;
 		try{
-			c = (Company) getEntityManager().createQuery("SELECT d FROM Company d WHERE d.id LIKE :Id")
+			c = (Company) getEntityManager().createQuery("SELECT d FROM Company d WHERE d.id = :Id")
 					.setParameter("Id", company).getSingleResult();
 			if (company != null) {
 				c.setCompanyName(company.getCompanyName());

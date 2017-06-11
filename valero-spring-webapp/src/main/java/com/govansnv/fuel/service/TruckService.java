@@ -11,6 +11,8 @@ public interface TruckService {
 	
 	public Truck getTruck(int id);
 	
+	public Truck getTruckByNo(String truckNo);
+	
 	public Truck addTruck(Truck truck);
 	
 	public Truck updateTruck(Truck Truck);

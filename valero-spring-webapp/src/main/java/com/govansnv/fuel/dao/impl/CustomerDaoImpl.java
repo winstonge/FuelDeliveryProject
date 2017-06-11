@@ -34,7 +34,7 @@ public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements C
 	public Customer getCustomer(int id) {
 		try {
 			Customer customer = (Customer) getEntityManager()
-					.createQuery("SELECT d FROM Customer d WHERE d.id LIKE :Id").setParameter("Id", id)
+					.createQuery("SELECT d FROM Customer d WHERE d.id = :Id").setParameter("Id", id)
 					.getSingleResult();
 
 			return customer;
@@ -63,7 +63,7 @@ public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements C
 	public Customer updateCustomer(Customer customer) {
 		Customer d =null;
 		try{
-			d = (Customer) getEntityManager().createQuery("SELECT d FROM Customer d WHERE d.id LIKE :Id")
+			d = (Customer) getEntityManager().createQuery("SELECT d FROM Customer d WHERE d.id = :Id")
 					.setParameter("Id", customer.getId()).getSingleResult();
 			if (d != null) {
 				d.setCustomerId(customer.getCustomerId());

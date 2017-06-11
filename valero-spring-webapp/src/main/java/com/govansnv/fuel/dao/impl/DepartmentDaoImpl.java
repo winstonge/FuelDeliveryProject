@@ -28,7 +28,7 @@ public class DepartmentDaoImpl extends AbstractDao<Integer, Department> implemen
 	@Transactional
 	public Department getDepartment(int id) {
 		try {
-			Department department = (Department) getEntityManager().createQuery("SELECT d FROM Department d WHERE d.id LIKE :Id")
+			Department department = (Department) getEntityManager().createQuery("SELECT d FROM Department d WHERE d.id = :Id")
 					.setParameter("Id", id).getSingleResult();
 
 			return department;
@@ -55,7 +55,7 @@ public class DepartmentDaoImpl extends AbstractDao<Integer, Department> implemen
 
 	@Transactional
 	public Department updateDepartment(Department department) {
-		Department d = (Department) getEntityManager().createQuery("SELECT d FROM Department d WHERE d.id LIKE :Id")
+		Department d = (Department) getEntityManager().createQuery("SELECT d FROM Department d WHERE d.id = :Id")
 				.setParameter("Id", department.getId()).getSingleResult();
 		if(d!=null){
 			d.setDepartmentName(department.getDepartmentName());

@@ -27,7 +27,7 @@ public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements Drive
 
 	public Driver getDriver(int id) {
 		try {
-			Driver driver = (Driver) getEntityManager().createQuery("SELECT d FROM Driver d WHERE d.id LIKE :Id")
+			Driver driver = (Driver) getEntityManager().createQuery("SELECT d FROM Driver d WHERE d.id = :Id")
 					.setParameter("Id", id).getSingleResult();
 
 			return driver;
@@ -53,7 +53,7 @@ public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements Drive
 
 	@Transactional
 	public void updateDriver(Driver driver) {
-		Driver d = (Driver) getEntityManager().createQuery("SELECT d FROM Driver d WHERE d.id LIKE :Id")
+		Driver d = (Driver) getEntityManager().createQuery("SELECT d FROM Driver d WHERE d.id = :Id")
 				.setParameter("Id", driver.getId()).getSingleResult();
 		if(d!=null){
 			d.setFirstname(driver.getFirstname());

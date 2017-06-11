@@ -27,8 +27,20 @@ public class TruckDaoImpl extends AbstractDao<Integer, Truck> implements TruckDa
 
 	public Truck getTruck(int id) {
 		try {
-			Truck truck = (Truck) getEntityManager().createQuery("SELECT d FROM truck d WHERE d.id LIKE :Id")
+			Truck truck = (Truck) getEntityManager().createQuery("SELECT d FROM Truck d WHERE d.id = :Id")
 					.setParameter("Id", id).getSingleResult();
+			return truck;
+		} catch (NoResultException ex) {
+			log.error(ex);
+			return null;
+		}
+	}
+	
+	public Truck getTruckByNo(String truckNo) {
+		try {
+			Truck truck = (Truck) getEntityManager().createQuery("SELECT d FROM Truck d WHERE d.truckCode = :truckNo")
+					.setParameter("truckNo", truckNo).getSingleResult();
+			log.info("############# === truck object:"+ truck);
 			return truck;
 		} catch (NoResultException ex) {
 			log.error(ex);
@@ -52,7 +64,7 @@ public class TruckDaoImpl extends AbstractDao<Integer, Truck> implements TruckDa
 
 	@Transactional
 	public void updateTruck(Truck truck) {
-		Truck tr = (Truck) getEntityManager().createQuery("SELECT d FROM truck d WHERE d.id LIKE :Id")
+		Truck tr = (Truck) getEntityManager().createQuery("SELECT d FROM truck d WHERE d.id = :Id")
 				.setParameter("Id", truck.getId()).getSingleResult();
 		if(tr!=null){
 			tr.setTruckCode(truck.getTruckCode());
@@ -72,4 +84,6 @@ public class TruckDaoImpl extends AbstractDao<Integer, Truck> implements TruckDa
 		}		
 		return false;		
 	}
+
+	
 }

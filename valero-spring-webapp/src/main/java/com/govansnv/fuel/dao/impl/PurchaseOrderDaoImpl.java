@@ -27,7 +27,7 @@ public class PurchaseOrderDaoImpl extends AbstractDao<Integer, PurchaseOrder> im
 
 	public PurchaseOrder getPurchaseOrder(int id) {
 		try {
-			PurchaseOrder purchaseOrder = (PurchaseOrder) getEntityManager().createQuery("SELECT d FROM purchase_order d WHERE d.id LIKE :Id")
+			PurchaseOrder purchaseOrder = (PurchaseOrder) getEntityManager().createQuery("SELECT d FROM purchase_order d WHERE d.id = :Id")
 					.setParameter("Id", id).getSingleResult();
 			return purchaseOrder;
 		} catch (NoResultException ex) {
@@ -52,7 +52,7 @@ public class PurchaseOrderDaoImpl extends AbstractDao<Integer, PurchaseOrder> im
 
 	@Transactional
 	public void updatePurchaseOrder(PurchaseOrder purchaseOrder) {
-		PurchaseOrder order = (PurchaseOrder) getEntityManager().createQuery("SELECT d FROM purchase_order d WHERE d.id LIKE :Id")
+		PurchaseOrder order = (PurchaseOrder) getEntityManager().createQuery("SELECT d FROM purchase_order d WHERE d.id = :Id")
 				.setParameter("Id", purchaseOrder.getId()).getSingleResult();
 		if(order!=null){
 			order.setTicketNo(purchaseOrder.getTicketNo());

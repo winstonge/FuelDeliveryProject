@@ -21,35 +21,35 @@ public class FuelDelivery {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "company_name")
-	private String companyName;
-
 	@Column(name = "purchase_order_item")
 	private String purchaseOrderItem;
-	
+
 	@Column(name = "meter_open_one")
 	private String meterOpenOne;
-	
+
 	@Column(name = "meter_close_one")
 	private String meterCloseOne;
-	
+
 	@Column(name = "meter_open_two")
 	private String meterOpenTwo;
-	
+
 	@Column(name = "meter_close_two")
 	private String meterCloseTwo;
-	
+
 	@Column(name = "total_fueled")
 	private String totalFueled;
-	
+
 	@Column(name = "fuel_price")
 	private String fuelPrice;
-	
+
 	@Column(name = "extra_points")
 	private String extraPoints;
-	
-	@ManyToOne(targetEntity=Device.class, fetch=FetchType.EAGER)
+
+	@ManyToOne(targetEntity = Device.class, fetch = FetchType.EAGER)
 	private Device device;
+
+	@ManyToOne(targetEntity = Truck.class, fetch = FetchType.EAGER)
+	private Truck truck;
 
 	public int getId() {
 		return id;
@@ -59,14 +59,6 @@ public class FuelDelivery {
 		this.id = id;
 	}
 
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
 	public String getPurchaseOrderItem() {
 		return purchaseOrderItem;
 	}
@@ -74,8 +66,6 @@ public class FuelDelivery {
 	public void setPurchaseOrderItem(String purchaseOrderItem) {
 		this.purchaseOrderItem = purchaseOrderItem;
 	}
-
-
 
 	public String getMeterOpenOne() {
 		return meterOpenOne;
@@ -137,5 +127,28 @@ public class FuelDelivery {
 	@JoinColumn(name = "device_id")
 	public Device getDevice() {
 		return device;
-	}	
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "truck_id")
+	public Truck getTruck() {
+		return truck;
+	}
+
+	public void setTruck(Truck truck) {
+		this.truck = truck;
+	}
+
+	@Override
+	public String toString() {
+		return "FuelDelivery [id=" + id + ",  purchaseOrderItem=" + purchaseOrderItem
+				+ ", meterOpenOne=" + meterOpenOne + ", meterCloseOne=" + meterCloseOne + ", meterOpenTwo="
+				+ meterOpenTwo + ", meterCloseTwo=" + meterCloseTwo + ", totalFueled=" + totalFueled + ", fuelPrice="
+				+ fuelPrice + ", extraPoints=" + extraPoints + "]";
+	}
+
 }

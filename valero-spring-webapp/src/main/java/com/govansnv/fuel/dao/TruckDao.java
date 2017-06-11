@@ -11,6 +11,9 @@ public interface TruckDao {
 
 	// Retrieve a single object
 	public Truck getTruck(int id);
+	
+	// Retrieve a single object by truck no
+	public Truck getTruckByNo(String truckNo);
 
 	// Retrieve all truck objects from the table
 	public List<Truck> getAll();
