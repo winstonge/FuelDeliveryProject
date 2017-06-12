@@ -1,5 +1,7 @@
 package com.govansnv.fuel.model;
 
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -44,6 +46,9 @@ public class FuelDelivery {
 
 	@Column(name = "extra_points")
 	private String extraPoints;
+	
+	@Column(name = "dateadded")
+	private Timestamp dateadded;
 
 	@ManyToOne(targetEntity = Device.class, fetch = FetchType.EAGER)
 	private Device device;
@@ -131,6 +136,14 @@ public class FuelDelivery {
 
 	public void setDevice(Device device) {
 		this.device = device;
+	}
+	
+	public Timestamp getDateadded() {
+		return dateadded;
+	}
+
+	public void setDateadded(Timestamp dateadded) {
+		this.dateadded = dateadded;
 	}
 
 	@ManyToOne

@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /*
- * This is our model class and it corresponds to Company table in database
+ * This is our model class and it corresponds to Device table in database
  */
 @Entity
 @Table(name = "Device")

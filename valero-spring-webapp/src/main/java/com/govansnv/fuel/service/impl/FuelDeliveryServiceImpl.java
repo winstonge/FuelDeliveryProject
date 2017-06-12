@@ -1,5 +1,6 @@
 package com.govansnv.fuel.service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class FuelDeliveryServiceImpl implements FuelDeliveryService {
 		return fuelDeliveryDao.getFuelDelivery(id);
 	}
 
-	public FuelDelivery addFuelDelivery(FuelDelivery fuelDelivery) {
+	public FuelDelivery addFuelDelivery(FuelDelivery fuelDelivery) {		
 		FuelDelivery d = fuelDeliveryDao.create(fuelDelivery);
 		return d;
 	}

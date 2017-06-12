@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ActionFactory {
 	private final String FUEL_TYPE="fuel";
+	private final String REFUEL_TYPE="refuel";
 	private static Log log = LogFactory.getLog(ActionFactory.class.getName());
 	
 	@Autowired
 	FuelDeliveryAction fuelDeliveryAction;
+	@Autowired
+	FuelDeliveryAction refuelAction;
 	
 	public BasicFuelingAction getAction(String actionType) {
 		if (actionType == null) {
@@ -20,6 +23,8 @@ public class ActionFactory {
 
 		if (actionType.equalsIgnoreCase(FUEL_TYPE)) {
 			return fuelDeliveryAction;
+		}else if(actionType.equalsIgnoreCase(REFUEL_TYPE)) {
+			return refuelAction;
 		}
 		return null;
 	}
