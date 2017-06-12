@@ -17,15 +17,15 @@ import com.govansnv.fuel.model.Company;
 @Repository
 public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements CompanyDao {
 
-	static Log log = LogFactory.getLog(DriverDaoImpl.class.getName());
+	private static Log log = LogFactory.getLog(DriverDaoImpl.class.getName());
 
 	@Transactional
 	public Company create(Company company) {
-		try{
+		try {
 			persist(company);
-		}catch(Exception e){
-			log.error(e);
-		}		
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
 		return company;
 	}
 
@@ -59,8 +59,8 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements Com
 
 	@Transactional
 	public Company updateCompany(Company company) {
-		Company c=null;
-		try{
+		Company c = null;
+		try {
 			c = (Company) getEntityManager().createQuery("SELECT d FROM Company d WHERE d.id = :Id")
 					.setParameter("Id", company).getSingleResult();
 			if (company != null) {
@@ -73,24 +73,24 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements Com
 				c.setSlogan(company.getSlogan());
 			}
 			update(c);
-		}catch(Exception e ){
+		} catch (Exception e) {
 			log.error(e);
-		}		
+		}
 		return c;
 	}
 
 	@Transactional
 	public boolean remove(int id) {
 		log.info("Going to delete the company data");
-		try{
+		try {
 			Company company = getCompany(id);
-			if (company!= null) {
+			if (company != null) {
 				delete(company);
 				return true;
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			log.error(e);
-		}		
+		}
 		return false;
 	}
 

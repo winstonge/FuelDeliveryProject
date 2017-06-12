@@ -6,7 +6,7 @@ import com.govansnv.fuel.model.Customer;
 
 public interface CustomerDao {
 	// Create a record in the department table
-	public Customer create(Customer customer);
+	public Customer create(Customer customer) ;
 
 	// Retrieve a single object
 	public Customer getCustomer(int id);
@@ -15,7 +15,7 @@ public interface CustomerDao {
 	public List<Customer> getAll(); 
 
 	// Update driver object in department table
-	public Customer updateCustomer(Customer customer);
+	public Customer updateCustomer(Customer customer) ;
 	
 	//Remove the item
 	public boolean remove(int id);

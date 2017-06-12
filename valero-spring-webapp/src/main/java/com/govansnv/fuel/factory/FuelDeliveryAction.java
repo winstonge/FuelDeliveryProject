@@ -39,14 +39,14 @@ public class FuelDeliveryAction implements BasicFuelingAction {
 			// Get the truck object
 			Truck truck = truckService.getTruckByNo(truckNumber);
 
-			// Add references
-			fuelDelivery.setDevice(device);
-			fuelDelivery.setTruck(truck);
 			// Create object
 			Calendar today = Calendar.getInstance();
 			Timestamp now = new Timestamp(today.getTimeInMillis()); 
 			fuelDelivery.setDateadded(now);
+			fuelDelivery.setDevice(device);
+			fuelDelivery.setTruck(truck);
 			FuelDelivery delivery = fuelDeliveryService.addFuelDelivery(fuelDelivery);
+			
 			// Return the StatusDTO
 			dto = new StatusDTO();
 			if (delivery.getId() > 0) {

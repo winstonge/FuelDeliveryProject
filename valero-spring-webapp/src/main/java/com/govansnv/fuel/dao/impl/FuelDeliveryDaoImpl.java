@@ -17,11 +17,15 @@ import com.govansnv.fuel.model.FuelDelivery;
 @Repository
 public class FuelDeliveryDaoImpl extends AbstractDao<Integer, FuelDelivery> implements FuelDeliveryDao {
  
-	static Log log = LogFactory.getLog(FuelDeliveryDaoImpl.class.getName());
+	private static Log log = LogFactory.getLog(FuelDeliveryDaoImpl.class.getName());
 	
 	@Transactional
 	public FuelDelivery create(FuelDelivery truck) {
-		persist(truck);
+		try{
+			persist(truck);
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}
 		return truck;
 	}
 

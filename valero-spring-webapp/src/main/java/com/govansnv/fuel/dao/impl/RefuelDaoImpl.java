@@ -16,12 +16,16 @@ import com.govansnv.fuel.model.Refuel;
 
 @Repository
 public class RefuelDaoImpl extends AbstractDao<Integer, Refuel> implements RefuelDao {
- 
-	static Log log = LogFactory.getLog(RefuelDaoImpl.class.getName());
-	
+
+	private static Log log = LogFactory.getLog(RefuelDaoImpl.class.getName());
+
 	@Transactional
 	public Refuel create(Refuel refuel) {
-		persist(refuel);
+		try {
+			persist(refuel);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
 		return refuel;
 	}
 
@@ -37,12 +41,11 @@ public class RefuelDaoImpl extends AbstractDao<Integer, Refuel> implements Refue
 	}
 
 	public List<Refuel> getAll() {
-		List<Refuel> refuels = getEntityManager().createQuery("SELECT d FROM Refuel d ORDER BY 1 ASC")
-				.getResultList();
+		List<Refuel> refuels = getEntityManager().createQuery("SELECT d FROM Refuel d ORDER BY 1 ASC").getResultList();
 		return refuels;
 	}
 
-	//Hibernate.initialize()
+	// Hibernate.initialize()
 	protected void initializeCollection(Collection<?> collection) {
 		if (collection == null) {
 			return;
@@ -54,22 +57,22 @@ public class RefuelDaoImpl extends AbstractDao<Integer, Refuel> implements Refue
 	public void updateRefuel(Refuel refuel) {
 		Refuel ref = (Refuel) getEntityManager().createQuery("SELECT d FROM Refuel d WHERE d.id = :Id")
 				.setParameter("Id", refuel.getId()).getSingleResult();
-		if(ref!=null){
+		if (ref != null) {
 			ref.setGrossLiters(refuel.getGrossLiters());
 			ref.setTankContent(refuel.getTankContent());
 			ref.setTruckCode(refuel.getTruckCode());
 		}
 		update(ref);
 	}
-	
+
 	@Transactional
 	public boolean remove(int id) {
 		log.info("Going to delete the refuel data");
 		Refuel refuel = getRefuel(id);
-		if(refuel!=null){
+		if (refuel != null) {
 			delete(refuel);
 			return true;
-		}		
-		return false;		
+		}
+		return false;
 	}
 }

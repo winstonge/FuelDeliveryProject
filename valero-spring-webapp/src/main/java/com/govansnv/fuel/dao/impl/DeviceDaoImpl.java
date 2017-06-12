@@ -16,11 +16,15 @@ import com.govansnv.fuel.model.Device;
 
 @Repository
 public class DeviceDaoImpl extends AbstractDao<Integer, Device> implements DeviceDao {
-	static Log log = LogFactory.getLog(DeviceDaoImpl.class.getName());
-	
+	private static Log log = LogFactory.getLog(DeviceDaoImpl.class.getName());
+
 	@Transactional
 	public Device create(Device device) {
-		persist(device);
+		try {
+			persist(device);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
 		return device;
 	}
 
@@ -34,10 +38,11 @@ public class DeviceDaoImpl extends AbstractDao<Integer, Device> implements Devic
 			return null;
 		}
 	}
-	
+
 	public Device getDeviceByNo(int deviceNo) {
 		try {
-			Device device = (Device) getEntityManager().createQuery("SELECT d FROM Device d WHERE d.deviceNo = :deviceNo")
+			Device device = (Device) getEntityManager()
+					.createQuery("SELECT d FROM Device d WHERE d.deviceNo = :deviceNo")
 					.setParameter("deviceNo", deviceNo).getSingleResult();
 			return device;
 		} catch (NoResultException ex) {
@@ -47,12 +52,11 @@ public class DeviceDaoImpl extends AbstractDao<Integer, Device> implements Devic
 	}
 
 	public List<Device> getAll() {
-		List<Device> devices = getEntityManager().createQuery("SELECT d FROM Device d ORDER BY id ASC")
-				.getResultList();
+		List<Device> devices = getEntityManager().createQuery("SELECT d FROM Device d ORDER BY id ASC").getResultList();
 		return devices;
 	}
 
-	//Hibernate.initialize()
+	// Hibernate.initialize()
 	protected void initializeCollection(Collection<?> collection) {
 		if (collection == null) {
 			return;
@@ -64,23 +68,22 @@ public class DeviceDaoImpl extends AbstractDao<Integer, Device> implements Devic
 	public void updateDevice(Device device) {
 		Device d = (Device) getEntityManager().createQuery("SELECT d FROM Device d WHERE d.id = :Id")
 				.setParameter("Id", device.getId()).getSingleResult();
-		if(d!=null){
+		if (d != null) {
 			d.setDeviceNo(device.getDeviceNo());
-			d.setLastSynch(device.getLastSynch());			
+			d.setLastSynch(device.getLastSynch());
 		}
 		update(d);
 	}
-	
+
 	@Transactional
 	public boolean remove(int id) {
 		log.info("Going to delete the Device data");
 		Device device = getDevice(id);
-		if(device!=null){
+		if (device != null) {
 			delete(device);
 			return true;
-		}		
-		return false;		
+		}
+		return false;
 	}
 
-	
 }

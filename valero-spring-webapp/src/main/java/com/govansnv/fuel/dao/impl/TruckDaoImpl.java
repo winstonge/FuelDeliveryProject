@@ -17,11 +17,15 @@ import com.govansnv.fuel.model.Truck;
 @Repository
 public class TruckDaoImpl extends AbstractDao<Integer, Truck> implements TruckDao {
  
-	static Log log = LogFactory.getLog(TruckDaoImpl.class.getName());
+	private static Log log = LogFactory.getLog(TruckDaoImpl.class.getName());
 	
 	@Transactional
 	public Truck create(Truck truck) {
-		persist(truck);
+		try{
+			persist(truck);
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}		
 		return truck;
 	}
 
@@ -40,7 +44,6 @@ public class TruckDaoImpl extends AbstractDao<Integer, Truck> implements TruckDa
 		try {
 			Truck truck = (Truck) getEntityManager().createQuery("SELECT d FROM Truck d WHERE d.truckCode = :truckNo")
 					.setParameter("truckNo", truckNo).getSingleResult();
-			log.info("############# === truck object:"+ truck);
 			return truck;
 		} catch (NoResultException ex) {
 			log.error(ex);

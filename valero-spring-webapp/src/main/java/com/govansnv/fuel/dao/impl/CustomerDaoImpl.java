@@ -18,7 +18,7 @@ import com.govansnv.fuel.model.Department;
 @Repository
 public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements CustomerDao {
 
-	static Log log = LogFactory.getLog(CustomerDaoImpl.class.getName());
+	private static Log log = LogFactory.getLog(CustomerDaoImpl.class.getName());
 
 	@Transactional
 	public Customer create(Customer customer){

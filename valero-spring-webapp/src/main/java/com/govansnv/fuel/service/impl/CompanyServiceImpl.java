@@ -24,7 +24,13 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	public Company addCompany(Company company) {
-		Company comp = companyDao.create(company);
+		Company comp=null;
+		try {
+			comp = companyDao.create(company);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return comp;
 	}
 

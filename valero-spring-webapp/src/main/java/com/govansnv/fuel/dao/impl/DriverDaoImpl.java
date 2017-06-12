@@ -16,12 +16,16 @@ import com.govansnv.fuel.model.Driver;
 
 @Repository
 public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements DriverDao {
- 
-	static Log log = LogFactory.getLog(DriverDaoImpl.class.getName());
-	
+
+	private static Log log = LogFactory.getLog(DriverDaoImpl.class.getName());
+
 	@Transactional
 	public Driver create(Driver driver) {
-		persist(driver);
+		try {
+			persist(driver);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+		}
 		return driver;
 	}
 
@@ -43,7 +47,7 @@ public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements Drive
 		return drivers;
 	}
 
-	//Hibernate.initialize()
+	// Hibernate.initialize()
 	protected void initializeCollection(Collection<?> collection) {
 		if (collection == null) {
 			return;
@@ -55,22 +59,22 @@ public class DriverDaoImpl extends AbstractDao<Integer, Driver> implements Drive
 	public void updateDriver(Driver driver) {
 		Driver d = (Driver) getEntityManager().createQuery("SELECT d FROM Driver d WHERE d.id = :Id")
 				.setParameter("Id", driver.getId()).getSingleResult();
-		if(d!=null){
+		if (d != null) {
 			d.setFirstname(driver.getFirstname());
 			d.setLastname(driver.getLastname());
 			d.setPassnum(driver.getPassnum());
 		}
 		update(d);
 	}
-	
+
 	@Transactional
 	public boolean remove(int id) {
 		log.info("Going to delete the driver data");
 		Driver driver = getDriver(id);
-		if(driver!=null){
+		if (driver != null) {
 			delete(driver);
 			return true;
-		}		
-		return false;		
+		}
+		return false;
 	}
 }

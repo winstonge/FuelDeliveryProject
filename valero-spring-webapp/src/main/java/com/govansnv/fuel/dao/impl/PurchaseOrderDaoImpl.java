@@ -17,11 +17,15 @@ import com.govansnv.fuel.model.PurchaseOrder;
 @Repository
 public class PurchaseOrderDaoImpl extends AbstractDao<Integer, PurchaseOrder> implements PurchaseOrderDao {
  
-	static Log log = LogFactory.getLog(PurchaseOrderDaoImpl.class.getName());
+	private static Log log = LogFactory.getLog(PurchaseOrderDaoImpl.class.getName());
 	
 	@Transactional
 	public PurchaseOrder create(PurchaseOrder purchaseOrder) {
-		persist(purchaseOrder);
+		try{
+			persist(purchaseOrder);
+		}catch(Exception e){
+			log.error(e.getMessage());
+		}		
 		return purchaseOrder;
 	}
 

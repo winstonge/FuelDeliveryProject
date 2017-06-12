@@ -38,14 +38,14 @@ public class RefuelingAction implements BasicFuelingAction {
 			// Get the truck object
 			Truck truck = truckService.getTruckByNo(truckNumber);
 
-			// Add references
-			refuel.setDevice(device);
-			refuel.setTruck(truck);
 			// Create object
 			Calendar today = Calendar.getInstance();
 			Timestamp now = new Timestamp(today.getTimeInMillis()); 
 			refuel.setDateadded(now);
+			refuel.setDevice(device);
+			refuel.setTruck(truck);
 			Refuel rf = refuelService.addRefuel(refuel);
+			
 			// Return the StatusDTO
 			dto = new StatusDTO();
 			if (rf.getId() > 0) {
