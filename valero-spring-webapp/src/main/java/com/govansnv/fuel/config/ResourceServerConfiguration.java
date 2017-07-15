@@ -22,7 +22,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
     	 http
          .authorizeRequests()
-             .antMatchers("/signup","/about").permitAll()
+             .antMatchers("/index.jsp").permitAll()
              .anyRequest().hasRole("USER")
         .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
