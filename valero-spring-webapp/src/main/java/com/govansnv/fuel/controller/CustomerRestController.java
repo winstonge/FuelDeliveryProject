@@ -19,7 +19,7 @@ public class CustomerRestController {
 	CustomerService customerService;
 
 	@GetMapping("/customers")
-	public List<Customer> getDrivers() {
+	public List<Customer> getCustomers() {
 		List<Customer> list = customerService.getAllCustomers();
 		return list;
 	}

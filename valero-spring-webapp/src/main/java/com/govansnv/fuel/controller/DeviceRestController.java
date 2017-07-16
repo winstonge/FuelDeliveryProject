@@ -36,7 +36,7 @@ public class DeviceRestController {
 	}
 	
 	@GetMapping(value = "/devices/{deviceid}", produces = { MediaType.APPLICATION_JSON_VALUE })
-	public Device getCompany(@PathVariable("deviceid") int deviceId) {
+	public Device getDevice(@PathVariable("deviceid") int deviceId) {
 		Device device = deviceService.getDevice(deviceId);
 		return device;
 	}

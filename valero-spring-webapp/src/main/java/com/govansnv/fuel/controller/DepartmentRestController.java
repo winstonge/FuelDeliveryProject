@@ -27,7 +27,7 @@ public class DepartmentRestController {
 	DepartmentService departmentService;
 	
 	@GetMapping("/departments")
-	public List<Department> getCompanies() {
+	public List<Department> getDepartments() {
 		List<Department> list = departmentService.getAllDepartments();
 		return list;
 	}

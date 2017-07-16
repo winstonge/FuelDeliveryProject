@@ -23,7 +23,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     	 http
          .authorizeRequests()
              .antMatchers("/index.jsp").permitAll()
-             .anyRequest().hasRole("USER")
+             .anyRequest().hasRole("ADMIN")
         .and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
  
