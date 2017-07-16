@@ -30,7 +30,6 @@ public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements C
 		return customer;
 	}
 
-	@Transactional
 	public Customer getCustomer(int id) {
 		try {
 			Customer customer = (Customer) getEntityManager()
@@ -44,7 +43,6 @@ public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements C
 		}
 	}
 
-	@Transactional
 	public List<Customer> getAll() {
 		List<Customer> customer = getEntityManager().createQuery("SELECT d FROM Customer d  ORDER BY 1 ASC")
 				.getResultList();

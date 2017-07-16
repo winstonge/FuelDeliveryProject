@@ -29,7 +29,6 @@ public class DepartmentDaoImpl extends AbstractDao<Integer, Department> implemen
 		return department;
 	}
 
-	@Transactional
 	public Department getDepartment(int id) {
 		try {
 			Department department = (Department) getEntityManager()
@@ -43,7 +42,6 @@ public class DepartmentDaoImpl extends AbstractDao<Integer, Department> implemen
 		}
 	}
 
-	@Transactional
 	public List<Department> getAll() {
 		List<Department> department = getEntityManager().createQuery("SELECT d FROM Department d  ORDER BY 1 ASC")
 				.getResultList();

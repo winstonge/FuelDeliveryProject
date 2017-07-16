@@ -29,7 +29,7 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements Com
 		return company;
 	}
 
-	@Transactional
+
 	public Company getCompany(int id) {
 		try {
 			Company company = (Company) getEntityManager().createQuery("SELECT d FROM Company d WHERE d.id = :Id")
@@ -42,7 +42,7 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements Com
 		}
 	}
 
-	@Transactional
+
 	public List<Company> getAll() {
 		List<Company> companies = getEntityManager().createQuery("SELECT d FROM Company d  ORDER BY d.id ASC")
 				.getResultList();
