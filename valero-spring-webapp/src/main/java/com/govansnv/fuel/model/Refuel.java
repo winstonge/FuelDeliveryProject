@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Refuel")
-public class Refuel {
+public class Refuel extends Fuel{
 
 	@Id
 	@Column(name="id")
@@ -30,8 +30,6 @@ public class Refuel {
 	@ManyToOne(targetEntity=Truck.class, fetch=FetchType.EAGER)
 	private Truck truck;
 	
-	@Column(name="truck_code")
-	private String truckCode;
 	
 	@Column(name="gross_liters")
 	private String grossLiters;
@@ -51,14 +49,7 @@ public class Refuel {
 		this.id = id;
 	}
 
-	public String getTruckCode() {
-		return truckCode;
-	}
-
-	public void setTruckCode(String truckCode) {
-		this.truckCode = truckCode;
-	}
-
+	
 	public String getGrossLiters() {
 		return grossLiters;
 	}

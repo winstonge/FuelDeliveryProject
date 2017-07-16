@@ -1,20 +1,17 @@
 package com.govansnv.fuel.factory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ActionFactory {
-	private final String FUEL_TYPE="fuel";
-	private final String REFUEL_TYPE="refuel";
-	private static Log log = LogFactory.getLog(ActionFactory.class.getName());
-	
+	public static final String FUEL_TYPE="fuel";
+	public static final String REFUEL_TYPE="refuel";
+		
 	@Autowired
 	FuelDeliveryAction fuelDeliveryAction;
 	@Autowired
-	FuelDeliveryAction refuelAction;
+	RefuelingAction refuelAction;
 	
 	public BasicFuelingAction getAction(String actionType) {
 		if (actionType == null) {

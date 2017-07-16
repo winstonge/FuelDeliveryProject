@@ -44,9 +44,9 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements Com
 
 	@Transactional
 	public List<Company> getAll() {
-		List<Company> drivers = getEntityManager().createQuery("SELECT d FROM Company d  ORDER BY d.company_name ASC")
+		List<Company> companies = getEntityManager().createQuery("SELECT d FROM Company d  ORDER BY d.id ASC")
 				.getResultList();
-		return drivers;
+		return companies;
 	}
 
 	// Hibernate.initialize()

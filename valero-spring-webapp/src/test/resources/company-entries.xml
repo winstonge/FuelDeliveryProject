@@ -1,0 +1,12 @@
+<dataset>
+    <company id="1"
+           company_name="Citgo Aruba"
+           phone="00297-5882012"
+           fax="00297-5882012"
+           address="San Nicolas 1"
+           city="Oranjestad"
+           country="Aruba" 
+           postal_code="none"
+           slogan="Let's us make the word better."           
+           />
+</dataset>

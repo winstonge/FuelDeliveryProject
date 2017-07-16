@@ -16,7 +16,9 @@ import com.govansnv.fuel.dto.StatusDTO;
 import com.govansnv.fuel.factory.ActionFactory;
 import com.govansnv.fuel.factory.BasicFuelingAction;
 import com.govansnv.fuel.model.Device;
+import com.govansnv.fuel.model.Fuel;
 import com.govansnv.fuel.model.FuelDelivery;
+import com.govansnv.fuel.model.Refuel;
 import com.govansnv.fuel.service.DeviceService;
 
 @RestController
@@ -39,10 +41,23 @@ public class DeviceRestController {
 		return device;
 	}
 
-	@PostMapping("/devices/{deviceid}/{truckno}/{action}")
+	@PostMapping("/devices/fuel/{deviceid}/{truckno}")
 	public StatusDTO postFuelDelivery(@PathVariable("deviceid") int deviceId,
-			@PathVariable("truckno") String truckNumber, @PathVariable("action") String actionType,
+			@PathVariable("truckno") String truckNumber, 
 			@RequestBody FuelDelivery delivery) {
+		StatusDTO dto = factoryMehtod(deviceId, truckNumber, ActionFactory.FUEL_TYPE, delivery);
+		return dto;
+	}	
+	
+	@PostMapping("/devices/refuel/{deviceid}/{truckno}")
+	public StatusDTO postRefuelTankTruck(@PathVariable("deviceid") int deviceId,
+			@PathVariable("truckno") String truckNumber, 
+			@RequestBody Refuel delivery) {
+		StatusDTO dto = factoryMehtod(deviceId, truckNumber, ActionFactory.REFUEL_TYPE, delivery);
+		return dto;
+	}
+	
+	private StatusDTO factoryMehtod(int deviceId, String truckNumber, String actionType, Object delivery) {
 		BasicFuelingAction action = factory.getAction(actionType);
 		StatusDTO dto=  action.performAction(actionType, deviceId, truckNumber, delivery);
 		return dto;

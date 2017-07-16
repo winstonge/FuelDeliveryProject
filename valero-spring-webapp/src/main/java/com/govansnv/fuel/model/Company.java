@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /*
  * This is our model class and it corresponds to Company table in database
  */
@@ -24,9 +26,11 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	 @JsonIgnore
 	@OneToMany(targetEntity=Department.class, mappedBy="company", fetch=FetchType.EAGER)
 	private Set<Department> departments;
-	
+
+	 @JsonIgnore
 	@OneToMany(targetEntity=Customer.class, mappedBy="company", fetch=FetchType.EAGER)
 	private Set<Customer> customers;
 
@@ -115,7 +119,7 @@ public class Company {
 		this.slogan = slogan;
 	}
 
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
 	public Set<Department> getDepartments() {
 		return departments;
 	}

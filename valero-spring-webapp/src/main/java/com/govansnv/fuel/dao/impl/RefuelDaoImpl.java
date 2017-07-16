@@ -60,7 +60,6 @@ public class RefuelDaoImpl extends AbstractDao<Integer, Refuel> implements Refue
 		if (ref != null) {
 			ref.setGrossLiters(refuel.getGrossLiters());
 			ref.setTankContent(refuel.getTankContent());
-			ref.setTruckCode(refuel.getTruckCode());
 		}
 		update(ref);
 	}

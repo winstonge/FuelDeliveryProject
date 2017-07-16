@@ -1,3 +1,6 @@
+com\govansnv\fuel\test\IManageDriversTest.class
+com\govansnv\fuel\test\TicketContainerTest.class
+com\govansnv\fuel\test\helper\AllITests.class
+com\govansnv\fuel\test\IFindByCompanySearchTerm.class
 com\govansnv\fuel\test\IFindByCustomerSearchTerm.class
 com\govansnv\fuel\test\IFindBySearchTermTest.class
-com\govansnv\fuel\test\helper\AllITests.class

@@ -6,6 +6,7 @@ import java.util.Calendar;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.govansnv.fuel.dto.StatusDTO;
 import com.govansnv.fuel.model.Device;
@@ -17,6 +18,7 @@ import com.govansnv.fuel.service.RefuelService;
 import com.govansnv.fuel.service.TruckService;
 import com.govansnv.fuel.util.Constants;
 
+@Component
 public class RefuelingAction implements BasicFuelingAction {
 	private static Log log = LogFactory.getLog(RefuelingAction.class.getName());
 	private Refuel refuel;

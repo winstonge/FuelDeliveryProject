@@ -72,10 +72,11 @@ public class PurchaseOrderDaoImpl extends AbstractDao<Integer, PurchaseOrder> im
 	
 	@Transactional
 	public boolean remove(int id) {
-		log.info("Going to delete the purchase_order data");
+		
 		PurchaseOrder order = getPurchaseOrder(id);
 		if(order!=null){
 			delete(order);
+			log.info("Purchase_order data deleted");
 			return true;
 		}		
 		return false;		

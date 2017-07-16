@@ -1,9 +1,10 @@
 package com.govansnv.fuel.test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,8 @@ import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseSetups;
 import com.govansnv.fuel.config.AppConfig;
-import com.govansnv.fuel.model.Department;
-import com.govansnv.fuel.model.Driver;
-import com.govansnv.fuel.service.DepartmentService;
-import com.govansnv.fuel.service.DriverService;
+import com.govansnv.fuel.model.Company;
+import com.govansnv.fuel.service.CompanyService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class })
@@ -34,42 +33,23 @@ import com.govansnv.fuel.service.DriverService;
 		@DatabaseSetup(value = "classpath:device-entries-clean.xml"),
 		@DatabaseSetup(value = "classpath:department-entries-clean.xml"),
 		@DatabaseSetup(value = "classpath:customer-entries-clean.xml"),
-		@DatabaseSetup(value = "classpath:company-entries.xml"),
 		//Insert into DB
-		@DatabaseSetup(value = "classpath:company-entries.xml"),
-		@DatabaseSetup(value = "classpath:department-entries.xml"),
-		@DatabaseSetup(value = "classpath:driver-entries.xml") })
+		@DatabaseSetup(value = "classpath:company-entries.xml") })
 @WebAppConfiguration
-public class IFindBySearchTermTest {
+public class IFindByCompanySearchTerm {
 
 	@Autowired
-	DriverService driverService;
-	@Autowired
-	DepartmentService departService;
+	CompanyService companyService;
+
+	@BeforeClass
+	public static void onceExecutedBeforeAll() {
+		System.out.println("@BeforeClass: onceExecutedBeforeAll");
+	}
 
 	@Test
 	public void findBySearchTerm_FindAll() {
-		List<Driver> searchResults = driverService.getAllDrivers();
-		assertThat(searchResults).hasSize(3);
-	}
-
-	@Test
-	public void findBySearchTerm_FindByDriverId() {
-		Driver searchResult = driverService.getDriver(2);
-		assertThat(searchResult).isNotNull();
-	}
-
-	@Test
-	public void findBySearchTerm_FindByDriverIdAndGetFieldValue() {
-		Driver searchResult = driverService.getDriver(2);
-		assertThat(searchResult.getFirstname()).isNotNull();
-		assertThat(searchResult);
-	}
-
-	@Test
-	public void findBySearchTerm_FindDepartmentNames() {
-		List<Department> searchResults = departService.getAllDepartments();
-		assertThat(searchResults).isNotNull();
+		List<Company> searchResults = companyService.getAllCompanies();
+		assertNotNull(searchResults);
 	}
 
 }

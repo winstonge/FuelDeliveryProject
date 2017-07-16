@@ -73,12 +73,12 @@ public class FuelDeliveryDaoImpl extends AbstractDao<Integer, FuelDelivery> impl
 	}
 	
 	@Transactional
-	public boolean remove(int id) {
-		log.info("Going to delete the fuel delivery data");
+	public boolean remove(int id) {		
 		FuelDelivery delivery = getFuelDelivery(id);
 		if(delivery!=null){
 			delete(delivery);
-			return true;
+			log.info("Fuel delivery data deleted");
+			return true;			
 		}		
 		return false;		
 	}

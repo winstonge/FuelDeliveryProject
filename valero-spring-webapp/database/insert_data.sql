@@ -1,5 +1,9 @@
 
 /*========= DELETE tables ============*/
+Delete from `valerodb`.`refuel`
+where id>0;
+
+
 /* FuelDelivery */
 Delete from `valerodb`.`fuel_delivery`
 where id>0;

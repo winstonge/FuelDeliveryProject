@@ -14,6 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
 /*
  * This is our model class and it corresponds to Department table in database
  */
@@ -28,9 +32,11 @@ public class Department {
 	@Column(name="department_name")
 	private String departmentName;
 	
+	@JsonIgnore
 	@ManyToOne(targetEntity=Company.class, fetch=FetchType.EAGER)
 	private Company company;
 	
+	 @JsonIgnore
 	@OneToMany(targetEntity=Device.class, mappedBy="department", fetch=FetchType.EAGER)
 	private Set<Device> devices;
 	
@@ -55,13 +61,14 @@ public class Department {
 		this.departmentName = departmentName;
 	}
 	
+
 	@ManyToOne
     @JoinColumn(name = "company_id")
 	public Company getCompany() {
 		return company;
 	}
 	
-	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
 	public Set<Device> getDevices() {
 		return devices;
 	}
